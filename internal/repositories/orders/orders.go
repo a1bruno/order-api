@@ -21,4 +21,11 @@ func (o *Orders) Add(newOrder models.Order) {
 	o.orders = append(o.orders, newOrder)
 }
 
-func (o *Orders) Refund(id uuid.UUID)
+func (o *Orders) Refund(id uuid.UUID) {
+	for i, order := range o.orders {
+		if order.ID == id {
+			o.orders[i].Refunded = true
+			return
+		}
+	}
+}
