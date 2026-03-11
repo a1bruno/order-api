@@ -13,7 +13,9 @@ func New() *Orders {
 	return &Orders{orders: make([]models.Order, 0)} //inicializando o orders como um slice vazio;
 }
 
-func (o Orders) GetAll() []models.Order
+func (o Orders) GetAll() []models.Order {
+	return o.orders
+}
 
 func (o Orders) Add(newOrder models.Order)
 
