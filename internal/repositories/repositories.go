@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"github.com/a1bruno/order-api/internal/models"
+	"github.com/a1bruno/order-api/internal/repositories/orders"
 	"github.com/google/uuid"
 )
 
@@ -14,5 +15,7 @@ type Repositories struct {
 }
 
 func New() *Repositories {
-	return &Repositories{}
+	return &Repositories{
+		Order: orders.New(),
+	}
 }
