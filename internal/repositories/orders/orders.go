@@ -6,11 +6,11 @@ import (
 )
 
 type Orders struct {
-	users []models.Order
+	orders []models.Order //definindo order como um slice para o armazenamento de maneira local;
 }
 
 func New() *Orders {
-	return &Orders{users: make([]models.Order, 0)}
+	return &Orders{orders: make([]models.Order, 0)} //inicializando o orders como um slice vazio;
 }
 
 func (o Orders) GetAll() []models.Order
