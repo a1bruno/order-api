@@ -16,6 +16,6 @@ type Repositories struct {
 
 func New() *Repositories {
 	return &Repositories{
-		Order: orders.New(),
+		Order: orders.New(), //inicialização do armazenamento de orders, não implementação de método*
 	}
 }
