@@ -13,3 +13,7 @@ type CreateOrder struct { //essa struct serve para implementar a lógica do Add(
 	Customer string
 	Price    float64
 }
+
+type ResponseOrder struct {
+	NewOrderID uuid.UUID `json:"new_order_id"` //essa struct vai ser usada para retornar o id quando o usuario adicionar um novo pedido
+}
