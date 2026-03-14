@@ -12,12 +12,14 @@ type Handlers struct {
 }
 
 func New(useCases *usecases.UseCases) *Handlers {
-	return &Handlers{}
+	h := &Handlers{
+		useCases: *useCases,
+	}
+	h.registerOrderEndpoints()
+	return h
 }
 
 func (h Handlers) Listen(port int) error {
-	h.registerOrderEndpoints()
-
 	return http.ListenAndServe(
 		fmt.Sprintf(":%v", port),
 		nil,
