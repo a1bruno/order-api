@@ -10,7 +10,22 @@ type Orders struct {
 }
 
 func New() *Orders {
-	return &Orders{orders: make([]models.Order, 0)} //inicializando o orders como um slice vazio;
+	return &Orders{
+		orders: []models.Order{
+			{
+				ID:       uuid.New(),
+				Customer: "Eddard Stark",
+				Price:    8.90,
+				Refunded: false,
+			},
+			{
+				ID:       uuid.New(),
+				Customer: "Robert Baratheon",
+				Price:    14.30,
+				Refunded: false,
+			},
+		},
+	} //inicializando o orders como um slice vazio;
 }
 
 func (o *Orders) GetAll() []models.Order {
