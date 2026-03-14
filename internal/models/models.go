@@ -3,7 +3,7 @@ package models
 import "github.com/google/uuid"
 
 type Order struct {
-	ID       uuid.UUID `json:"user_id"`
+	ID       uuid.UUID `json:"order_id"`
 	Customer string    `json:"customer_name"`
 	Price    float64   `json:"product_price"`
 	Refunded bool      `json:"refunded"`
