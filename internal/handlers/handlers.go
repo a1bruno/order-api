@@ -16,6 +16,8 @@ func New(useCases *usecases.UseCases) *Handlers {
 }
 
 func (h Handlers) Listen(port int) error {
+	h.registerOrderEndpoints()
+
 	return http.ListenAndServe(
 		fmt.Sprintf(":%v", port),
 		nil,
