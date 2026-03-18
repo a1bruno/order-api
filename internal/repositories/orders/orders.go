@@ -6,7 +6,7 @@ import (
 )
 
 type Orders struct {
-	orders []models.Order //definindo order como um slice para o armazenamento de maneira local;
+	orders []models.Order
 }
 
 func New() *Orders {
@@ -25,22 +25,27 @@ func New() *Orders {
 				Refunded: false,
 			},
 		},
-	} //inicializando o orders como um slice vazio;
+	}
 }
 
-func (o *Orders) GetAll() []models.Order {
-	return o.orders
+func (o *Orders) GetAll() ([]models.Order, error) {
+	return o.orders, nil
 }
 
-func (o *Orders) Add(newOrder models.Order) {
+func (o *Orders) Add(newOrder models.Order) error {
 	o.orders = append(o.orders, newOrder)
+	return nil
 }
 
-func (o *Orders) Refund(id uuid.UUID) {
+func (o *Orders) Refund(id uuid.UUID) error {
 	for i, order := range o.orders {
 		if order.ID == id {
+			if order.Refunded {
+				return ErrOrderAlreadyRefunded
+			}
 			o.orders[i].Refunded = true
-			return
+			return nil
 		}
 	}
+	return ErrNotFound
 }

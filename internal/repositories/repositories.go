@@ -8,14 +8,14 @@ import (
 
 type Repositories struct {
 	Order interface {
-		GetAll() []models.Order
-		Add(newUser models.Order)
-		Refund(id uuid.UUID)
+		GetAll() ([]models.Order, error)
+		Add(newUser models.Order) error
+		Refund(id uuid.UUID) error
 	}
 }
 
 func New() *Repositories {
 	return &Repositories{
-		Order: orders.New(), //inicialização do armazenamento de orders, não implementação de método*
+		Order: orders.New(),
 	}
 }
