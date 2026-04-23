@@ -10,22 +10,7 @@ type Orders struct {
 }
 
 func New() *Orders {
-	return &Orders{
-		orders: []models.Order{
-			{
-				ID:       uuid.New(),
-				Customer: "Eddard Stark",
-				Price:    8.90,
-				Refunded: false,
-			},
-			{
-				ID:       uuid.New(),
-				Customer: "Robert Baratheon",
-				Price:    14.30,
-				Refunded: false,
-			},
-		},
-	}
+	return &Orders{}
 }
 
 func (o *Orders) GetAll() ([]models.Order, error) {
