@@ -16,7 +16,10 @@ func main() {
 		log.Fatalf("Erro ao carregar .env")
 	}
 
-	conn := db.NewDBConnection()
+	conn, err := db.NewDBConnection()
+	if err != nil {
+		panic(err)
+	}
 	defer conn.Close()
 	repos := repositories.New()
 	useCases := usecases.New(repos)
