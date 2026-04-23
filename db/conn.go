@@ -15,7 +15,7 @@ var (
 	dbname   = os.Getenv("DB_NAME")
 )
 
-func NewDBConnection() *sql.DB {
+func NewDBConnection() (*sql.DB, error) {
 	connStr := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname,
@@ -23,13 +23,13 @@ func NewDBConnection() *sql.DB {
 
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
-		log.Fatalf("Erro ao abrir conexão: %v", err)
+		panic(err)
 	}
 
 	if err := db.Ping(); err != nil {
-		log.Fatalf("Erro ao conectar ao banco %v", err)
+		panic(err)
 	}
 
 	log.Println("Conexão com banco estabelecida!")
-	return db
+	return db, nil
 }
