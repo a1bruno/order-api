@@ -21,7 +21,7 @@ func main() {
 		panic(err)
 	}
 	defer conn.Close()
-	repos := repositories.New()
+	repos := repositories.New(conn)
 	useCases := usecases.New(repos)
 	h := handlers.New(useCases)
 	h.Listen(8080)

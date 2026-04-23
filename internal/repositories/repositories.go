@@ -9,8 +9,7 @@ import (
 )
 
 type Repositories struct {
-	connection *sql.DB
-	Order      interface {
+	Order interface {
 		GetAll() ([]models.Order, error)
 		Add(newUser models.Order) error
 		Refund(id uuid.UUID) error
@@ -19,7 +18,6 @@ type Repositories struct {
 
 func New(connection *sql.DB) *Repositories {
 	return &Repositories{
-		connection: connection,
-		Order:      orders.New(),
+		Order: orders.New(connection),
 	}
 }
