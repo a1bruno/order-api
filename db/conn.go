@@ -23,11 +23,11 @@ func NewDBConnection() (*sql.DB, error) {
 
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	if err := db.Ping(); err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	log.Println("Conexão com banco estabelecida!")
